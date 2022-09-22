@@ -1,11 +1,11 @@
-export function Odd({ data, butt }) {
+export function Odd({ title, data, onRemove }) {
     return (
         <>
             {
                 <h3>
-                    ODD:{" "}
+                    {title}:{" "}
                     {data.map((item, i) => (
-                        <li key={item + i}>{item}</li>
+                        <li key={item + i}>{item} <button onClick={e => onRemove(title, i)}>delete</button></li>
                     ))}
                 </h3>
             }

@@ -18,17 +18,26 @@ export function Home() {
 
   function handleData() {
     const mytext = data.split(" ");
-    if (mytext[0] % 2) {
+    if (mytext[0] % 2 === 0) {
       setEven((prev) => [...prev, data]);
     } else setOdd((prev) => [...prev, data]);
   }
 
+  function onRemove(listName, elemIndex) {
+    if (listName === 'ODD') {
+      //setOdd
+      setOdd(odd => odd.filter((textElem, index) => index !== elemIndex));
+    } else if (listName === 'EVEN') {
+      //setEven
+      setEven(even => even.filter((textElem, index) => index !== elemIndex));
+    }
+  }
   return (
     <div>
       {data && <h1>{data}</h1>}
       <button onClick={handleData}>Fetch and split</button>
-      <Odd data={odd} />
-      <Even data={even} />
+      <Odd title={'ODD'} data={odd} onRemove={onRemove} />
+      <Even title={'EVEN'} data={even} onRemove={onRemove} />
     </div>
   );
 }
